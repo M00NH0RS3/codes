@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pedido</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600&display=swap" />
+    <style>
+        html,
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #212121;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Inter", sans-serif;
+        }
+
+        .box {
+            font-size: 20px;
+            color: white;
+            height: 250px;
+            width: 350px;
+            /* height: 100%;
+            width: 100%; */
+            border-radius: 10px;
+            background: #191919;
+            flex-direction: column;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .buttons-container {
+            display: flex;
+            justify-content: space-around;
+            height: 50px;
+            width: 150px;
+        }
+        button {
+            border-radius: 5px;
+            font-weight: 600;
+            background-image: linear-gradient(#ffffff, #dcdcdc);
+            color: #2728ff;
+            cursor: pointer;
+            z-index: 2;
+            transition: 0.1s;
+            height: 30px;
+            width: 50px;
+        }
+
+        img {
+            height: 100%;
+            max-width: 100%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+        }
+
+        .hidden {
+            opacity: 0;
+            transition: opacity 2s ease-in;
+        }
+    </style>
+</head>
+
+<body>
+    <audio src="https://www.myinstants.com/media/sounds/careless-whisper-fail.mp3" id="audio-si" preload="auto"></audio>
+    <audio src="https://www.myinstants.com/media/sounds/careless-whisper-fail.mp3" id="audio-no" preload="auto"></audio>
+
+    <div class="box">
+        <p>C*zinho hoje?</p>
+        <div class="buttons-container">
+            <button id="si">Sim</button>
+            <button id="no">Não</button>
+        </div>
+    </div>
+
+    <div id="imageContainer" class="hidden">
+        <img src="https://i.pinimg.com/236x/07/fd/b2/07fdb2bae277932e4e351add9d755d71.jpg" alt="Imagem">
+    </div>
+</body>
+
+<script>
+    let audioSi = document.getElementById('audio-si')
+    let audioNo = document.getElementById('audio-no')
+    let buttonSi = document.getElementById('si');
+    let buttonNo = document.getElementById('no');
+    let height = window.innerHeight - 50;
+    let width = window.innerWidth - 50;
+    var imageContainer = document.getElementById('imageContainer');
+
+    buttonSi.addEventListener('click', () => {
+        audioSi.play();
+        buttonSi.style.zIndex = 0;
+        buttonNo.remove();
+        setTimeout(() => {
+            imageContainer.style.opacity = 1;
+        }, 100);
+    });
+
+    buttonNo.addEventListener('click', function(){
+        audioNo.play();
+        buttonNo.style.position = 'absolute';
+        buttonNo.style.top = Math.random() * height + 'px';
+        buttonNo.style.left = Math.random() * width +'px';
+    });
+
+</script>
+
+</html>
